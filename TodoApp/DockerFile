@@ -1,0 +1,5 @@
+from eclipse-temurin:17-jdx-alpine
+volume /tmp
+copy target/*jar app.java
+entrypoint ["java","-jar","/app.jar"]
+expose 8080
