@@ -1,5 +1,17 @@
-from eclipse-temurin:17-jdx-alpine
-volume /tmp
-copy target/*jar app.java
-entrypoint ["java","-jar","/app.jar"]
-expose 8001
+# Use Eclipse Temurin JDK 17 with JXDX on Alpine Linux
+FROM eclipse-temurin:17-jdx-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Add a volume at /tmp
+VOLUME /tmp
+
+# Copy the compiled JAR file from the target directory to the container
+COPY todo/target/*.jar app.jar
+
+# Expose port 8001 (assuming your Spring Boot application runs on this port)
+EXPOSE 8001
+
+# Define the entry point for running the application
+ENTRYPOINT ["java", "-jar", "/app.jar"]
